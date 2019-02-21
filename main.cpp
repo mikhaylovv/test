@@ -6,10 +6,10 @@
 template<class T>
 class add_res { 
 public:
-	add_res(int val, T op) : _val(val), _op(op) {}
+	add_res(int val) : _val(val) {}
 	
 	add_res<T>& operator()(int val) {
-		_val = _op(_val, val);
+		_val = T{}(_val, val);
 		return *this; 
 	} 
 
@@ -18,12 +18,11 @@ public:
 	} 
 	
 private:
-	int _val = 0; 
-	T _op;
+	int _val = 0;
 }; 
 
 add_res<decltype(std::plus<>{})> add(int val) { 
-	return add_res<decltype(std::plus<>{})>(val, std::plus<>{}); 
+	return add_res<decltype(std::plus<>{})>(val); 
 } 
 
 int main() { 
