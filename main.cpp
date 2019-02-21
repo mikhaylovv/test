@@ -21,8 +21,8 @@ private:
 	int _val = 0;
 }; 
 
-add_res<decltype(std::plus<>{})> add(int val) { 
-	return add_res<decltype(std::plus<>{})>(val); 
+add_res<std::plus<>> add(int val) { 
+	return add_res<std::plus<>>(val); 
 } 
 
 int main() { 
